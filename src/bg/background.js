@@ -11,3 +11,9 @@ chrome.extension.onMessage.addListener(
   	chrome.pageAction.show(sender.tab.id);
     sendResponse();
   });
+
+  chrome.runtime.onInstalled.addListener(function (object) {
+    chrome.tabs.create({url: "views/instructions.html"}, function (tab) {
+        console.log("New tab launched with http://yoursite.com/");
+    });
+});
