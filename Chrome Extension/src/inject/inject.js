@@ -166,7 +166,8 @@ chrome.extension.sendMessage({}, function(response) {
 
           // Google Slides has 2 anchor tags for every link for some reason;
           // Hence ensuring no duplicate embeds!
-          if (url != prevUrl && url.includes('circuitverse.org')) {
+          if (url != prevUrl &&
+              url.includes('circuitverse.org/simulator/embed')) {
             prevUrl = url
             embed(anchorTags[i]);
           }

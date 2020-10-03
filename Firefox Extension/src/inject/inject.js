@@ -71,7 +71,11 @@ chrome.runtime.sendMessage({}, function(response) {
       // https://www.google.com/url?q=https://circuitverse.org/simulator/embed/247&sa=D&ust=1601725669371000&usg=AFQjCNHjRBTGCOn7qQbamqK5YYcQ9AXgmA
       // Helper function to extract actual circuitverse url only
       function cleanUrl(url) {
-        return url.match(/q=([^&]*)\&/)[1];
+        var re = /q=([^&]*)\&/;
+        // if (re.test(url))
+        //   return url.match()[1];
+        // else
+        return url;
       }
 
       // Create circuitverse iframe from anchor tag
@@ -169,16 +173,15 @@ chrome.runtime.sendMessage({}, function(response) {
         for (var i = 0; i < anchorTags.length; i++) {
           var url = anchorTags[i].getAttributeNS(
               'http://www.w3.org/1999/xlink', 'href');
-
           // Google Slides has 2 anchor tags for every link for some reason;
           // Hence ensuring no duplicate embeds!
-          if (url != prevUrl && url.includes('circuitverse.org')) {
+          if (url != prevUrl &&
+              url.includes('circuitverse.org/simulator/embed')) {
             prevUrl = url
             embed(anchorTags[i]);
           }
         }
       }
-
       // Call driver logic repeatedly
       setInterval(main, 300);
 
