@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    
+  </body>
+</html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <style>
+      .logo { vertical-align: middle; }
+      ul { list-style-type: none; padding: 0; }
+      h4 { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <form class="sidebar branding-below">
+      <h2>Embed Circuit in Slide</h2>
+      	
+        <div class="block form-group">
+        <label for="circuit">Circuit Url</label>
+        <input type="text" id="circuit" name="circuit" style="width:200px">
+        </div>
+        
+        <div class="block" id="button-bar">
+        <button class="action" id="run-embed">Embed!</button>
+        </div>
+        
+      
+      <h5 class="error" id="error"></h5>
+    </form>
+    <div class="sidebar bottom">
+      <img alt="Add-on logo" class="logo"
+        src="https://avatars1.githubusercontent.com/u/42944450?s=200&v=4" width="50px" height="50px" style="border-radius:5px">
+      <span class="gray branding-text" style="font-size:20px">CircuitVerse</span>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+      $('#run-embed').click(runEmbed);
+      /**
+       * Runs a server-side function to translate the text on all slides.
+       */
+      function runEmbed() {
+        this.disabled = true;
+        $('#error').text('');
+        google.script.run
+            .withSuccessHandler(function(imageUrl, element) {
+              element.disabled = false;
+              return false;
+             })
+            .withFailureHandler(function(msg, element) {
+              element.disabled = false;
+              $('#error').text(msg);
+              return false;
+            })
+            .withUserObject(this)
+            .embedCircuit($('input[name=circuit]').val());
+      }
+    </script>
+  </body>
+</html>
