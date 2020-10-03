@@ -5,15 +5,13 @@
 // });
 
 
-//example of using a message handler from the inject scripts
-chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-  	chrome.pageAction.show(sender.tab.id);
-    sendResponse();
-  });
+// example of using a message handler from the inject scripts
 
-  chrome.runtime.onInstalled.addListener(function (object) {
-    chrome.tabs.create({url: "views/instructions.html"}, function (tab) {
-        console.log("New tab launched with http://yoursite.com/");
-    });
+// chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
+//   chrome.pageAction.show(sender.tab.id);
+//   sendResponse();
+// });
+
+chrome.runtime.onInstalled.addListener(function(object) {
+  // chrome.tabs.create({url: 'views/instructions.html'});
 });
