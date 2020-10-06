@@ -1,0 +1,36 @@
+.banner {
+  position: fixed;
+  top: 100;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  position: fixed;
+  top: 20;
+  width: 100%;
+}
+
+
+li {
+  float: right;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  color: #008000;
+}
+
+.active {
+  background-color: #4CAF50;
+}
