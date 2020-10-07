@@ -1,3 +1,4 @@
+
 # CircuitVerse Presentation Embed
 ![download](https://github.com/CircuitVerse/CircuitVerse/raw/master/public/img/cvlogo.svg?sanitize=true)
 ## About the project
@@ -18,7 +19,16 @@ Click load unpacked extension and select the chrome extension repo folder
 
 ### Firefox
 Compress the Firefox extension repo folder (.xpi,.jar,.zip)
-While in Firefox, press Ctrl + Shift + A, goto the extensions menu, click the "settings" icon, select "Install addon from file", upload the compressed file
+Goto about:debugging#/runtime/this-firefox on Firefox
+Click on "Load Temporary AddOn" and upload the compressed file
+
+### Reloading the extension
+#### Chrome
+Goto chrome://extensions on Chrome
+Click on the reload icon just below your extension to reload
+#### Firefox
+Goto about:debugging#/runtime/this-firefox on Firefox
+Click on the "Reload" just below your extension to reload
 
 ## Intructions
 [W.I.P], will update as the extension's work progresses
