@@ -1,4 +1,5 @@
 
+
 # CircuitVerse Presentation Embed
 ![download](https://github.com/CircuitVerse/CircuitVerse/raw/master/public/img/cvlogo.svg?sanitize=true)
 ## About the project
@@ -14,21 +15,22 @@ cd CircuitVerse-Presentation-Embed
 ## Installation
 
 ### Chrome
-Goto chrome://extensions/, enable developer mode
-Click load unpacked extension and select the chrome extension repo folder
+- Goto chrome://extensions/, enable developer mode
+- Click load unpacked extension and select the chrome extension repo folder
 
 ### Firefox
-Compress the Firefox extension repo folder (.xpi,.jar,.zip)
-Goto about:debugging#/runtime/this-firefox on Firefox
-Click on "Load Temporary AddOn" and upload the compressed file
+- Compress the Firefox extension repo folder (.xpi,.jar,.zip)
+- Goto about:debugging#/runtime/this-firefox on Firefox
+- Click on "Load Temporary AddOn" and upload the compressed file
 
 ### Reloading the extension
 #### Chrome
-Goto chrome://extensions on Chrome
-Click on the reload icon just below your extension to reload
+- Goto chrome://extensions on Chrome
+- Click on the reload icon just below your extension to reload
 #### Firefox
-Goto about:debugging#/runtime/this-firefox on Firefox
-Click on the "Reload" just below your extension to reload
+- Goto about:debugging#/runtime/this-firefox on Firefox
+- Click on the "Reload" just below your extension to reload
 
 ## Intructions
 [W.I.P], will update as the extension's work progresses
+
