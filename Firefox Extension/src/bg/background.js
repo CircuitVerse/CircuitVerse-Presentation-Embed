@@ -13,5 +13,5 @@
 // });
 
 chrome.runtime.onInstalled.addListener(function(object) {
-  chrome.tabs.create({url: 'views/instructions.html'});
+  chrome.tabs.create({url: 'https://docs.circuitverse.org/#/embedding_circuits?id=embedding-in-google-slides'});
 });
