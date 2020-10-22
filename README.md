@@ -22,6 +22,10 @@ cd CircuitVerse-Presentation-Embed
 1. Goto about:debugging#/runtime/this-firefox on Firefox
 1. Click on "Load Temporary AddOn" and select `manifest.json` in the firefox extension folder
 
+### Testing
+1. Goto to the following Google Slides presentation: https://docs.google.com/presentation/d/1QybVSk8CujyHEHlLDtdlCiae9vK9qGhWfb4SA-WGCR0/edit#slide=id.g36e2028529a5eb1_0
+2. Goto presentation mode. Live Circuits should load.
+
 ### Reloading the extension
 #### Chrome
 1. Goto chrome://extensions on Chrome
