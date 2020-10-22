@@ -5,25 +5,14 @@
 }
 
 html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-	font-size: 100%;
+	  font-size: 100%;
     font:inherit;
     font-family: Inter;
+    scroll-behavior: smooth;
+    color: #212529;
 } 
 
-h1 {
-	font-size: 200%;
-	color: #212529;
-	line-height: 1.5;
-    font-family: Inter;
-}
-
-h3 {
-	color: #212529;
-	line-height: 2;
-    font-family: Inter;
-}
-
-ul {
+#NavBar {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -33,6 +22,8 @@ ul {
   top: 20;
   width: 100%;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+  top: 0px;
+  padding-top: 9px;
 }
 
 
@@ -50,7 +41,6 @@ li a {
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
   color: #42B983;
 }
@@ -67,15 +57,21 @@ li a:hover {
 	color: #FFFFFF;
 }
 
-.whitespace {
-	width: 1300px;
-  	height: 100px;
-  	top: 0px;
-  	left: 0px;
-  	background: #FFFFFF;
-  	position: fixed;
+#Home {
+  line-height: 2;
+  padding-left: 75px;
 }
 
-html {
-  scroll-behavior: smooth;
+#Plugin {
+  line-height: 2;
+  padding-left: 75px;
+}
+
+#Instructions {
+  line-height: 2;
+  padding-left: 75px;
+}
+
+a:link {
+  text-decoration: none;
 }
