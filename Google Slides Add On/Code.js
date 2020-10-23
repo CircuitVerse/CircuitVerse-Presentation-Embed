@@ -1,4 +1,8 @@
 /**
+ * @OnlyCurrentDoc
+ */
+
+/**
  * Create a open menu item.
  * @param {Event} event The open event.
  */
