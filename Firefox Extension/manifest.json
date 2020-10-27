@@ -12,7 +12,9 @@
     "128": "icons/icon128.png"
   },
   "browser_action": {
-    "default_icon": "icons/icon32.png"
+    "default_icon": "icons/icon32.png",
+    "default_popup": "views/browser_action.html",
+    "default_title": "Embed CircuitVerse Live Circuit"
   },
   "default_locale": "en",
   "background": {

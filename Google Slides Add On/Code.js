@@ -33,16 +33,6 @@ function showSideBar() {
   SlidesApp.getUi().showSidebar(ui);
 }
 
-
-function insertImage() {
-  slide = SlidesApp.getActivePresentation().appendSlide();
-  img = slide.insertImage("https://circuitverse.org/assets/homepage/sap-47940b47d72a771dbbbf4da40a55640ced1b7d543bdbd16b978742c0d9bc4a41.jpg");
-  url = "https://circuitverse.org/simulator/embed/67"
-  img.setLinkUrl(url);
-  //img.setDescription(url);
-  // img.setTitle(url)  
-}
-
 function getCircuitImagePath(id) {
   var queryUrl = `circuitverse.org/api/v1/projects/${id}/image_preview`;
   return JSON.parse(UrlFetchApp.fetch(queryUrl))["project_preview"];
@@ -74,14 +64,4 @@ function embedCircuit(url) {
   slide = SlidesApp.getActivePresentation().getSelection().getCurrentPage();
   img = slide.insertImage(imagePath);
   img.setLinkUrl(embedPath);
-}
-
-function doGet(request) {
-  return HtmlService.createTemplateFromFile('Page')
-      .evaluate();
-}
-
-function include(filename) {
-  return HtmlService.createHtmlOutputFromFile(filename)
-      .getContent();
 }
