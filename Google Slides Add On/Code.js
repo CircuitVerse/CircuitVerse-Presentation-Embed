@@ -1,4 +1,5 @@
-/**
+
+ /**
  * @OnlyCurrentDoc
  */
 
@@ -50,7 +51,7 @@ function getProjectId(url) {
   if(re3.test(url)) return url.match(re3)[1];
   if(re4.test(url)) return url.match(re4)[1];
   if(re5.test(url)) return url.match(re5)[1];
-  throw "Invalid Url";
+  throw "The URL is incorrect";
 }
 
 function getEmbedPath(id) {
