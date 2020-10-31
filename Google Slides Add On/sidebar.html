@@ -11,31 +11,70 @@
   <head>
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <style>
-      .logo { vertical-align: middle; }
+
+      .logo { vertical-align: right; }
       ul { list-style-type: none; padding: 0; }
       h4 { margin: 0; }
+     
+
+
+.action{
+  background: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#run-embed {
+  background: white; 
+  color: black; 
+  border: 2px solid #f44336;
+}
+
+#run-embed:hover {
+  background: #f44336;
+  color: white;
+}
+h2{
+margin: 17px 0px;
+color: #4CAF50;
+}
     </style>
   </head>
   <body>
-    <form class="sidebar branding-below">
-      <h2>Embed Circuit in Slide</h2>
+    <form class="sidebar branding-below" >
+      <h2>Insert Circuit in Slide</h2>
       	
         <div class="block form-group">
-        <label for="circuit">Circuit Url</label>
-        <input type="text" id="circuit" name="circuit" style="width:200px">
+        
+        <input type="text" id="circuit" name="circuit" placeholder="Circuit URL" style="width:100%" type="url">
         </div>
         
         <div class="block" id="button-bar">
-        <button class="action" id="run-embed">Embed!</button>
+        <button class="action" id="run-embed">Insert</button>
         </div>
         
       
       <h5 class="error" id="error"></h5>
     </form>
+    <div class="sidebar center">
+   
+    </div>
+    
     <div class="sidebar bottom">
+    <img alt="Add-on logo" class="logo"
+        src="https://circuitverse.org/assets/homepage/new_homepage_sketch-38351a3f9f00fe80165bbbb39f59712d555926ff736e085aca064e413006727b.png" width=100% height=100% style="border-radius:5px" >
+  
       <img alt="Add-on logo" class="logo"
-        src="https://avatars1.githubusercontent.com/u/42944450?s=200&v=4" width="50px" height="50px" style="border-radius:5px">
-      <span class="gray branding-text" style="font-size:20px">CircuitVerse</span>
+        src="https://circuitverse.org/assets/CircuitVerse-c968d111d011b5a9fbd1dfc11efc32634e0971d6e5e7bb97b1cffce5927d8cd0.png" width=100% height=100% style="border-radius:5px">
+   
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
