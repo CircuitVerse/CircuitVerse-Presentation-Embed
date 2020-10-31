@@ -10,7 +10,7 @@
 function onOpen(e) {
   SlidesApp.getUi()
       .createMenu('CircuitVerse')
-      .addItem('Embed Circuit', 'showSideBar')
+      .addItem('Insert Circuit', 'showSideBar')
       .addToUi();
 }
 
@@ -65,4 +65,10 @@ function embedCircuit(url) {
   slide = SlidesApp.getActivePresentation().getSelection().getCurrentPage();
   img = slide.insertImage(imagePath);
   img.setLinkUrl(embedPath);
+}
+
+function embedCircuitPreview(url) {
+  var id = getProjectId(url);
+  var imagePath = getCircuitImagePath(id);
+  return imagePath;
 }

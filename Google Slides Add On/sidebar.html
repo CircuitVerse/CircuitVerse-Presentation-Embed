@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <base target="_top">
-  </head>
-  <body>
-    
-  </body>
-</html>
-<html>
-  <head>
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <style>
 
       .logo { vertical-align: right; }
       ul { list-style-type: none; padding: 0; }
       h4 { margin: 0; }
+
+      .action{
+        background: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+
+      #preview-img {
+        border: 2px solid #4CAF50;
+        border-radius: 8px;
+      }
+
+      #run-embed {
+      background: white; 
+      color: black; 
+      border: 2px solid #4CAF50;
+    }
+
+    #run-embed:hover {
+      background: #4CAF50;
+      color: white;
+    }
      
+     #inp {
+       border-radius: 8px;
+     }
 
-
-.action{
-  background: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-
-#run-embed {
-  background: white; 
-  color: black; 
-  border: 2px solid #f44336;
-}
-
-#run-embed:hover {
-  background: #f44336;
-  color: white;
-}
-h2{
-margin: 17px 0px;
-color: #4CAF50;
-}
+      h2{
+      margin: 17px 0px;
+      color: #4CAF50;
+      }
     </style>
   </head>
   <body>
@@ -54,7 +54,7 @@ color: #4CAF50;
       	
         <div class="block form-group">
         
-        <input type="text" id="circuit" name="circuit" placeholder="Circuit URL" style="width:100%" type="url">
+        <input id="inp" type="text" id="circuit" name="circuit" placeholder="Circuit URL" style="width:100%" type="url" onchange="">
         </div>
         
         <div class="block" id="button-bar">
@@ -63,6 +63,7 @@ color: #4CAF50;
         
       
       <h5 class="error" id="error"></h5>
+      <img alt="Preview Circuit" id="preview-img" width=100% style="border-radius:5px" >
     </form>
     <div class="sidebar center">
    
@@ -99,6 +100,43 @@ color: #4CAF50;
             .withUserObject(this)
             .embedCircuit($('input[name=circuit]').val());
       }
+
+      $('input[name=circuit]').on('input', previewCircuit);
+      $('#preview-img').hide();
+      function previewCircuit() {
+         $('#error').text('');
+         $('#preview-img').fadeOut();
+         google.script.run
+            .withSuccessHandler(function(imageUrl, element) {
+              $('#preview-img').attr('src', imageUrl);
+              $('#preview-img').fadeIn();
+              $('#error').text('');
+              return false;
+             })
+            .withFailureHandler(function(msg, element) {
+              $('#error').text('Please enter a valid public circuit url');
+              return false;
+            })
+            .withUserObject(this)
+            .embedCircuitPreview($('input[name=circuit]').val());
+         
+      }
+      
+      function getProjectId(url) {
+        var re1= /https:\/\/circuitverse\.org\/users\/\d*\/projects\/(.*)/;
+        var re2 = /"https:\/\/circuitverse\.org\/simulator\/embed\/(.*?)"/;
+        var re3 = /https:\/\/circuitverse\.org\/simulator\/edit\/(.*)/;
+        var re4 = /https:\/\/circuitverse\.org\/simulator\/embed\/(.*)/;
+        var re5 = /https:\/\/circuitverse\.org\/simulator\/(.*)/;
+        
+        if(re1.test(url)) return url.match(re1)[1];
+        if(re2.test(url)) return url.match(re2)[1];
+        if(re3.test(url)) return url.match(re3)[1];
+        if(re4.test(url)) return url.match(re4)[1];
+        if(re5.test(url)) return url.match(re5)[1];
+        return undefined;
+      }
+      
     </script>
   </body>
 </html>
