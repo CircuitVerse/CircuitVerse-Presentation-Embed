@@ -37,6 +37,11 @@
       background: #4CAF50;
       color: white;
     }
+    
+    #run-embed:disabled,
+    #run-embed[disabled] {
+      opacity:0.2
+    }
      
      #inp {
        border-radius: 8px;
@@ -54,7 +59,7 @@
       	
         <div class="block form-group">
         
-        <input id="inp" type="text" id="circuit" name="circuit" placeholder="Circuit URL" style="width:100%" type="url" onchange="">
+        <input id="inp" type="text" id="circuit" name="circuit" placeholder="e.g. https://circuitverse.org/users/3/projects/247" style="width:100%" type="url" onchange="">
         </div>
         
         <div class="block" id="button-bar">
