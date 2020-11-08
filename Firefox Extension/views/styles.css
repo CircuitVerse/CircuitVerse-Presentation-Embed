@@ -1,12 +1,4 @@
-@font-face {
-  font-family: 'Inter';
-  src: url('Inter.ttf');
-  font: inherit;
-}
-
 html {
-  font: inherit;
-  font-family: Inter;
   scroll-behavior: smooth;
   line-height: 35px;
   color: #344968;
