@@ -2,7 +2,7 @@
   "name": "CircuitVerse",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "CircuitVerse Firefox Extension",
+  "description": "CircuitVerse Chrome Extension - Embed Live Circuit in Google Slides",
   "homepage_url": "https://circuitverse.org",
   "icons": {
     "16": "icons/icon16.png",
@@ -12,8 +12,7 @@
     "128": "icons/icon128.png"
   },
   "browser_action": {
-    "default_icon": "icons/icon32.png",
-    "default_popup": "views/browser_action.html",
+    "default_icon": "icons/icon128.png",
     "default_title": "Embed CircuitVerse Live Circuit"
   },
   "default_locale": "en",

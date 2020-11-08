@@ -1,0 +1,59 @@
+html {
+  scroll-behavior: smooth;
+  line-height: 35px;
+  color: #344968;
+  font-size: 1.2em;
+}
+
+a {
+  font-weight: bold;
+  color: #00BC8C;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+h4 {
+  font-weight: normal;
+}
+
+.pic {
+  width: 100%;
+  height: auto;
+}
+
+.heading {
+  text-decoration: none;
+  color: #344968;
+  font-weight: bold;
+}
+
+.heading:hover {
+  text-decoration: underline;
+  text-decoration-color: #00BC8C;
+}
+
+.header {
+  padding: 50px;
+  background: #00BC8C;
+  color: #FFFFFF;
+}
+
+#Congratulations {
+  margin: auto;
+  color: #fff;
+}
+
+.content {
+  padding: 50px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.header-content {
+  max-width: 900px;
+  margin: auto;
+}
