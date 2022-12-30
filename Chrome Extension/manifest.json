@@ -36,5 +36,17 @@
       ],
       "run_at": "document_idle"
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "views/embedTool.html",
+        "styles/embedTool.css",
+        "src/inject/gsi.client.js"
+      ],
+      "matches": [
+        "https://docs.google.com/*"
+      ]
+    }
   ]
 }
