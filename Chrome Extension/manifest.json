@@ -1,31 +1,31 @@
 {
   "name": "CircuitVerse",
   "version": "0.0.1",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "CircuitVerse Chrome Extension - Embed Live Circuit in Google Slides",
   "homepage_url": "https://circuitverse.org",
-  "icons": {
-    "16": "icons/icon16.png",
-    "19": "icons/icon19.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "browser_action": {
-    "default_icon": "icons/icon32.png",
-    "default_title": "Embed CircuitVerse Live Circuit",
-    "default_popup": "views/browser_action.html"
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "19": "icons/icon19.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "CircuitVerse",
+    "default_popup": "views/popup.html"
   },
   "default_locale": "en",
-  "background": {
-    "scripts": [
-      "src/bg/background.js"
-    ],
-    "persistent": true
-  },
   "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
     "https://docs.google.com/*"
   ],
+  "background": {
+    "service_worker": "src/bg/background.js"
+  },
   "content_scripts": [
     {
       "matches": [
@@ -33,7 +33,8 @@
       ],
       "js": [
         "src/inject/inject.js"
-      ]
+      ],
+      "run_at": "document_idle"
     }
   ]
 }
