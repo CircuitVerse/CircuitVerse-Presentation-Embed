@@ -21,7 +21,8 @@
     "tabs"
   ],
   "host_permissions": [
-    "https://docs.google.com/*"
+    "https://docs.google.com/*",
+    "https://circuitverse.org/*"
   ],
   "background": {
     "service_worker": "src/bg/background.js"
@@ -43,8 +44,7 @@
         "views/embedTool.html",
         "styles/embedTool.css",
         "src/inject/embedTool.js",
-        "src/inject/gsi.client.js",
-        "src/inject/axios.min.js"
+        "src/inject/gsi.client.js"
       ],
       "matches": [
         "https://docs.google.com/*"
