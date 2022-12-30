@@ -1,6 +1,7 @@
 // Variables
+
 // Keeps track of current frame
-var slideNumber = -1;
+let slideNumber = -1;
 
 
 // Specific location which allows the iframe embedded to be visible
@@ -24,8 +25,7 @@ function getSlideIframe() {
 // Get the slide dimensions in svg values
 function getSlideSvgViewDimensions() {
   var svgContainer =
-    getSlideIframe().contentWindow.document.getElementsByClassName(
-      'punch-viewer-svgpage-svgcontainer')[0];
+    getSlideIframe().contentWindow.document.getElementsByClassName('punch-viewer-svgpage-svgcontainer')[0];
   var svg = svgContainer.children[0];
   var viewBox = svg.getAttribute('viewBox').split(' ');
 
@@ -36,9 +36,7 @@ function getSlideSvgViewDimensions() {
 
 // Get slide dimensions and offsets in pixels
 function getSlideDimensions() {
-  var slideDiv =
-    getSlideIframe().contentWindow.document.getElementsByClassName(
-      'punch-viewer-content')[0];
+  var slideDiv = getSlideIframe().contentWindow.document.getElementsByClassName('punch-viewer-content')[0];
   var metadata = {
     xOffsetPx: parseFloat(slideDiv.style.left),
     yOffsetPx: parseFloat(slideDiv.style.top),
@@ -52,8 +50,7 @@ function getSlideDimensions() {
 // Needed for identifying exact location to embed the iframe
 function extractPositionFromPath(path) {
   var svgLinkPath = path.getAttribute('d');
-  var pathRegexExp =
-    /M ([\S]*) ([\S]*) L ([\S]*) ([\S]*) ([\S]*) ([\S]*) ([\S]*) ([\S]*) Z/;
+  var pathRegexExp = /M ([\S]*) ([\S]*) L ([\S]*) ([\S]*) ([\S]*) ([\S]*) ([\S]*) ([\S]*) Z/;
   var matches = svgLinkPath.match(pathRegexExp);
   var x1 = parseFloat(matches[1]);
   var y1 = parseFloat(matches[2]);
@@ -65,7 +62,6 @@ function extractPositionFromPath(path) {
     svgX: x1, svgY: y1, svgW: widthInSvg, svgH: heightInSvg
   }
 }
-
 
 // Create circuitverse iframe from anchor tag
 // Calculates exact position and places the iframe
@@ -100,9 +96,8 @@ function createEmbedIframe(anchorTag) {
   return ifrm;
 }
 
-
 // Embeds iframe given link
-function embed(anchorTag) {
+function embedCircuits(anchorTag) {
   var iframe = createEmbedIframe(anchorTag);
   var url = anchorTag.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
   var location = getEmbedLocation();
@@ -117,19 +112,18 @@ function embed(anchorTag) {
 // Removes all embedded iframes
 function removeEmbed() {
   var iframes = document.getElementsByClassName('circuitverse-iframe');
-  while (iframes[0]) {
+  while(iframes[0]) {
     iframes[0].parentNode.removeChild(iframes[0]);
   }
 }
 
-
 // Setting slideNumber = -1 will reset everything
-function reset() {
+function resetCircuitVerseEmbed() {
   slideNumber = -1;
 }
 
 // Driver logic
-function main() {
+function initCircuitVerseIframeRunner() {
   var iframeDocument = getSlideIframe();
 
   if (!iframeDocument) {
@@ -149,20 +143,18 @@ function main() {
   removeEmbed();  // remove previous iframes
   slideNumber = getSlideNumber();
 
-  var anchorTags =
-    iframeDocument.contentWindow.document.getElementsByTagName('a');
+  var anchorTags = iframeDocument.contentWindow.document.getElementsByTagName('a');
 
   var prevUrl = undefined;
   for (var i = 0; i < anchorTags.length; i++) {
-    var url = anchorTags[i].getAttributeNS(
-      'http://www.w3.org/1999/xlink', 'href');
+    var url = anchorTags[i].getAttributeNS('http://www.w3.org/1999/xlink', 'href');
 
     // Google Slides has 2 anchor tags for every link for some reason;
     // Hence ensuring no duplicate embeds!
     if (url != prevUrl &&
       url.includes('circuitverse.org/simulator/embed')) {
       prevUrl = url
-      embed(anchorTags[i]);
+      embedCircuits(anchorTags[i]);
     }
   }
 }
@@ -170,15 +162,12 @@ function main() {
 
 document.onreadystatechange = function() {
   if (document.readyState === 'complete') {
-    clearInterval(readyStateCheckInterval);
-    
     // Call driver logic repeatedly
-    setInterval(main, 300);
-
+    setInterval(initCircuitVerseIframeRunner, 300);
     // Force reset after 3 seconds - needed for window resizing
     // Also needed if first slide has circuit
     window.addEventListener('resize', () => {
-      setTimeout(reset, 3000);
+      setTimeout(resetCircuitVerseEmbed, 3000);
     });
   }
 }
