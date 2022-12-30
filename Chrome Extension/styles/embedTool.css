@@ -1,0 +1,9 @@
+.circuitverse-embed-tool{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    background: #fff;
+    width: 250px;
+    height: 250px;
+}
