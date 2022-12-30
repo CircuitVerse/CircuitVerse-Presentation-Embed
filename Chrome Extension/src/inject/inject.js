@@ -160,15 +160,39 @@ function initCircuitVerseIframeRunner() {
   }
 }
 
-//? Functions realaed to `CircuitVerse Embed Tool`
+
+//? Function realaed to `CircuitVerse Embed Tool` initialization
 function injectCircuitVerseEmbedTool() {
-  
+  // Inject embed tool css
+  fetch(chrome.runtime.getURL('/styles/embedTool.css')).then(r => r.text()).then(css => {
+    var style = document.createElement('style');
+    style.innerHTML = css;
+    document.head.appendChild(style);
+  })
+
+  // Inject embed tool html
+  fetch(chrome.runtime.getURL('/views/embedTool.html')).then(r => r.text()).then(html => {
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    document.body.appendChild(div);
+  });
+
+  // Inject embed tool javscript
+  var embedToolScript = document.createElement('script');
+  embedToolScript.src = chrome.runtime.getURL('/src/inject/embedTool.js');
+  document.getElementsByTagName("body")[0].appendChild(embedToolScript);
+
+  // Inject an Span tag with extension id
+  var circuitverseExtensionIDTag = document.createElement('span');
+  circuitverseExtensionIDTag.id = 'circuitverse-extension-id';
+  circuitverseExtensionIDTag.style.display = 'none';
+  circuitverseExtensionIDTag.innerText = chrome.runtime.id;
+  document.getElementsByTagName("body")[0].appendChild(circuitverseExtensionIDTag);
 }
 
 document.onreadystatechange = function() {
   if (document.readyState === 'complete') {
     //? Initialization Code for `CircuitVerse Embed Runner`
-
     // Call driver logic repeatedly
     setInterval(initCircuitVerseIframeRunner, 300);
     // Force reset after 3 seconds - needed for window resizing
@@ -179,8 +203,8 @@ document.onreadystatechange = function() {
 
     //? Initialization Code for `CircuitVerse Embed Tool`
     var gsi_script = document.createElement('script');
-    gsi_script.src = "//accounts.google.com/gsi/client"; // Load gsi client library for OAuth
-    gsi_script.onload = injectCircuitVerseEmbedTool;
+    gsi_script.src = chrome.runtime.getURL("/src/inject/gsi.client.js"); // Load gsi client library for OAuth
+    gsi_script.onload = injectCircuitVerseEmbedTool; // run injectCircuitVerseEmbedTool( after loading gsi client library
     document.getElementsByTagName("body")[0].appendChild(gsi_script);
   }
 }

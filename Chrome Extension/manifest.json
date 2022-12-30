@@ -42,11 +42,15 @@
       "resources": [
         "views/embedTool.html",
         "styles/embedTool.css",
+        "src/inject/embedTool.js",
         "src/inject/gsi.client.js"
       ],
       "matches": [
         "https://docs.google.com/*"
       ]
     }
-  ]
+  ],
+  "externally_connectable": {
+    "matches": ["https://docs.google.com/*"]
+  }
 }
