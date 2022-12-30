@@ -22,7 +22,9 @@
   ],
   "host_permissions": [
     "https://docs.google.com/*",
-    "https://circuitverse.org/*"
+    "https://circuitverse.org/*",
+    "https://www.googleapis.com/*",
+    "https://googleapis.com"
   ],
   "background": {
     "service_worker": "src/bg/background.js"
