@@ -1,8 +1,9 @@
-// Variables
+//? Variables
 
 // Keeps track of current frame
 let slideNumber = -1;
 
+//? Functions related to run the embedded CircuitVerse
 
 // Specific location which allows the iframe embedded to be visible
 function getEmbedLocation() {
@@ -159,9 +160,15 @@ function initCircuitVerseIframeRunner() {
   }
 }
 
+//? Functions realaed to `CircuitVerse Embed Tool`
+function injectCircuitVerseEmbedTool() {
+  
+}
 
 document.onreadystatechange = function() {
   if (document.readyState === 'complete') {
+    //? Initialization Code for `CircuitVerse Embed Runner`
+
     // Call driver logic repeatedly
     setInterval(initCircuitVerseIframeRunner, 300);
     // Force reset after 3 seconds - needed for window resizing
@@ -169,5 +176,11 @@ document.onreadystatechange = function() {
     window.addEventListener('resize', () => {
       setTimeout(resetCircuitVerseEmbed, 3000);
     });
+
+    //? Initialization Code for `CircuitVerse Embed Tool`
+    var gsi_script = document.createElement('script');
+    gsi_script.src = "//accounts.google.com/gsi/client"; // Load gsi client library for OAuth
+    gsi_script.onload = injectCircuitVerseEmbedTool;
+    document.getElementsByTagName("body")[0].appendChild(gsi_script);
   }
 }
