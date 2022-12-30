@@ -167,12 +167,11 @@ function main() {
   }
 }
 
-var readyStateCheckInterval = setInterval(function () {
+
+document.onreadystatechange = function() {
   if (document.readyState === 'complete') {
     clearInterval(readyStateCheckInterval);
-
-
-
+    
     // Call driver logic repeatedly
     setInterval(main, 300);
 
@@ -182,4 +181,4 @@ var readyStateCheckInterval = setInterval(function () {
       setTimeout(reset, 3000);
     });
   }
-}, 10);
+}
