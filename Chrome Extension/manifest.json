@@ -43,7 +43,8 @@
         "views/embedTool.html",
         "styles/embedTool.css",
         "src/inject/embedTool.js",
-        "src/inject/gsi.client.js"
+        "src/inject/gsi.client.js",
+        "src/inject/axios.min.js"
       ],
       "matches": [
         "https://docs.google.com/*"
