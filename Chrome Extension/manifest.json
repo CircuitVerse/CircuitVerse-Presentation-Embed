@@ -1,6 +1,6 @@
 {
   "name": "CircuitVerse",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 3,
   "description": "CircuitVerse Chrome Extension - Embed Live Circuit in Google Slides",
   "homepage_url": "https://circuitverse.org",
