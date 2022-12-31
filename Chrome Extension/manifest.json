@@ -47,7 +47,10 @@
         "views/embedTool.html",
         "styles/embedTool.css",
         "src/inject/embedTool.js",
-        "src/inject/gsi.client.js"
+        "src/inject/gsi.client.js",
+        "img/google-icon.png",
+        "img/loading.gif",
+        "img/logo_white.png"
       ],
       "matches": [
         "https://docs.google.com/*"
