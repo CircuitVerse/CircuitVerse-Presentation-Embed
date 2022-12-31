@@ -168,19 +168,24 @@ function injectCircuitVerseEmbedTool() {
     var style = document.createElement('style');
     style.innerHTML = css;
     document.head.appendChild(style);
+  }).then(()=>{
+
+    // Inject embed tool html
+    fetch(chrome.runtime.getURL('/views/embedTool.html')).then(r => r.text()).then(html => {
+      var div = document.createElement('div');
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }).then(()=>{
+
+      // Inject embed tool javscript
+      var embedToolScript = document.createElement('script');
+      embedToolScript.src = chrome.runtime.getURL('/src/inject/embedTool.js');
+      document.getElementsByTagName("body")[0].appendChild(embedToolScript);
+      
+    })
+
   })
 
-  // Inject embed tool html
-  fetch(chrome.runtime.getURL('/views/embedTool.html')).then(r => r.text()).then(html => {
-    var div = document.createElement('div');
-    div.innerHTML = html;
-    document.body.appendChild(div);
-  });
-
-  // Inject embed tool javscript
-  var embedToolScript = document.createElement('script');
-  embedToolScript.src = chrome.runtime.getURL('/src/inject/embedTool.js');
-  document.getElementsByTagName("body")[0].appendChild(embedToolScript);
 
   // Inject an Span tag with extension id
   var circuitverseExtensionIDTag = document.createElement('span');
