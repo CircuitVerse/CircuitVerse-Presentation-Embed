@@ -49,7 +49,6 @@
         "src/inject/embedTool.js",
         "src/inject/gsi.client.js",
         "img/google-icon.png",
-        "img/loading.gif",
         "img/logo_white.png"
       ],
       "matches": [
