@@ -46,10 +46,10 @@ function authorizeUser() {
                 var type = response.message_type;
                 if(type === "USER_AUTHENTICATION_SUCCESSFUL"){
                     var email = response.email;
-                    console.log(email);
-                    // TODO
+                    updateLoggedinEmail(email);
+                    showFormScreen();
                 }else if(type === "USER_AUTHENTICATION_FAILED"){
-                    // TODO
+                    console.log("CircuitVerse : Failed User Authentication by Implicit OAuth 2.0")
                 }
             })
         }
@@ -66,45 +66,152 @@ function checkLoginStatus() {
         var type_ = response.message_type;
         var email_ = response.email;
         if(type_ === "USER_NOT_LOGGED_IN"){
-            // TODO
+            showAuthorizeScreen();
         }else if(type_ === "USER_LOGGED_IN"){
-            // TODO
+            updateLoggedinEmail(email_);
+            showFormScreen();
         }
     })
 }
 
 // Insert Circuit Embed with link
 function insertLink() {
-    const circuitVerseLink = document.getElementById('circuitverse-embed-task-link').value;
+    const circuitVerseLink = document.getElementById('circuitverse__link_input').value;
+    if(circuitVerseLink === null || circuitVerseLink === undefined || circuitVerseLink === "") return;
+    showLoadingScreen();
     sendMessageToBackground({
         message_type: "EMBED_CIRCUIT",
         link_of_page: getCurrentPageUrl(),
         email: getLoggedInEmail(),
         circuitverse_link: circuitVerseLink
     }, function(response) {
+        showFormScreen();
         var type_ = response.message_type;
         if(type_ === "INVALID_PRESENTATION_LINK"){
-            // TODO
+            showMessageOnScreen("Invalid presentation link", false, 5);
         }else if(type_ === "USER_NOT_LOGGED_IN"){
-            // TODO
+            showMessageOnScreen("User not logged in", false, 5);
+            setTimeout(()=>showAuthorizeScreen(), 5000);
         }else if(type_ === "USER_LOGIN_SESSION_EXPIRED"){
-            // TODO
+            showMessageOnScreen("Login session expired", false, 5);
+            setTimeout(()=>showAuthorizeScreen(), 5000);
         }else if(type_ === "CIRCUIT_EMBEDDING_FAILED"){
-            // TODO
+            showMessageOnScreen("Circuit embedding failed", false, 5);
         }else if(type_ === "CIRCUIT_EMBEDDING_SUCCESSFUL"){
-            // TODO
+            showMessageOnScreen("Successfully inserted circuit in slide", true, 5);
+            document.getElementById('circuitverse__link_input').value = "";
         }
+        showFormScreen();
     });
 }
 
+function getAbsoluteUrl(path) {
+    return "chrome-extension://"+fetchExtensionId()+"/"+path
+}
 
+
+//? UI Related functions and variables
+// Main window
+let circuitverse_embed_tool_window = document.getElementById("circuitverse__embed_tool_window");
+// Screens
+let circuitverse__embed_tool_window_authorize_screen = document.getElementsByClassName("authorize_screen")[0];
+let circuitverse__embed_tool_window_loading_screen = document.getElementsByClassName("loading_container")[0];
+let circuitverse__embed_tool_window_form_screen = document.getElementsByClassName("form_screen")[0];
+// Components
+let circuitverse__msg_box = document.getElementsByClassName("msg_box")[0];
+let circuitverse__link_input = document.getElementById("circuitverse__link_input");
+let circuitverse__logged_in_email = document.getElementById("circuitverse__logged_in_email");
+// Buttons
+let circuitverse__embed_tool_open_btn = document.getElementsByClassName("circuitverse__embed_open_btn")[0];
+let circuitverse__embed_tool_close_btn = document.getElementsByClassName("circuitverse__embed_close_btn")[0];
+let circuitverse__authorize_btn = document.getElementById("circuitverse__authorize_btn");
+let circuitverse__embed_btn = document.getElementById("circuitverse__embed_btn");
+
+
+function onclickOpenButton(){
+    // Make sure to disable open button
+    circuitverse__embed_tool_open_btn.classList.add("hide");
+    // Show close button
+    circuitverse__embed_tool_close_btn.classList.remove("hide");
+    // Make circuitverse_embed_tool_window visible
+    circuitverse_embed_tool_window.classList.remove("hide");
+}
+
+function onclickCloseButton(){
+    // Make sure to disable open button
+    circuitverse__embed_tool_open_btn.classList.remove("hide");
+    // Show close button
+    circuitverse__embed_tool_close_btn.classList.add("hide");
+    // Make circuitverse_embed_tool_window visible
+    circuitverse_embed_tool_window.classList.add("hide");
+}
+
+function showLoadingScreen(){
+    circuitverse__embed_tool_window_authorize_screen.classList.add("hide");
+    circuitverse__embed_tool_window_form_screen.classList.add("hide");
+    circuitverse__embed_tool_window_loading_screen.classList.remove("hide");
+}
+
+function showAuthorizeScreen() {
+    circuitverse__embed_tool_window_form_screen.classList.add("hide");
+    circuitverse__embed_tool_window_loading_screen.classList.add("hide");    
+    circuitverse__embed_tool_window_authorize_screen.classList.remove("hide");
+}
+
+function showFormScreen(){
+    circuitverse__embed_tool_window_authorize_screen.classList.add("hide");
+    circuitverse__embed_tool_window_loading_screen.classList.add("hide");
+    circuitverse__embed_tool_window_form_screen.classList.remove("hide");
+}
+
+function showMessageOnScreen(message, successful, duration_seconds) {
+    if(successful){
+        circuitverse__msg_box.classList.remove("error");
+        circuitverse__msg_box.classList.add("success");
+    }else{
+        circuitverse__msg_box.classList.remove("success");
+        circuitverse__msg_box.classList.add("error");
+    }
+    circuitverse__msg_box.innerText = message;
+    circuitverse__msg_box.classList.remove("invisible");
+    setTimeout(()=>{
+        circuitverse__msg_box.classList.add("invisible");
+    }, duration_seconds*1000);
+}
+
+function updateLoggedinEmail(email) {
+    circuitverse__logged_in_email.innerText = email;
+}
+
+
+// Initialization function
 
 function initEmbedTool(){
     var interval = setInterval(function(){
         if(document.readyState === 'complete') {
-            document.getElementById('yujkujhk').addEventListener('click', insertLink);
-            document.getElementById("auth-btn-circuitverse").addEventListener("click", authorizeUser);
             clearInterval(interval);
+            // Insert assets
+            let logo_white_url = getAbsoluteUrl("img/logo_white.png");
+            document.getElementById("logo_white_1").src = logo_white_url;
+            document.getElementById("logo_white_2").src = logo_white_url;
+            document.getElementById("logo_white_3").src = logo_white_url;
+            document.getElementById("logo_white_4").src = logo_white_url;
+
+            let google_icon_url = getAbsoluteUrl("img/google-icon.png");
+            document.getElementById("google_icon").src = google_icon_url;
+            
+            // Initialize all event listeners
+            circuitverse__authorize_btn.addEventListener('click', authorizeUser);
+            circuitverse__embed_btn.addEventListener("click", insertLink);
+            circuitverse__embed_tool_open_btn.addEventListener("click", onclickOpenButton);
+            circuitverse__embed_tool_close_btn.addEventListener("click", onclickCloseButton);
+
+            // Show loading screen by default
+            showLoadingScreen();
+
+            // Check for login status
+            checkLoginStatus();
+        
         }
     }, 10);
 }
