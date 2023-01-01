@@ -32,7 +32,7 @@ function authorizeUser() {
     // TODO : update oauth token
     const client = google.accounts.oauth2.initTokenClient({
         client_id: '707727329587-7t91s6ri6ob0j01ok04t4iddkectvs0r.apps.googleusercontent.com',
-        scope: 'https://www.googleapis.com/auth/presentations',
+        scope: 'https://www.googleapis.com/auth/presentations https://www.googleapis.com/auth/userinfo.email',
         hint: getLoggedInEmail(),
         callback: function(response){
             var access_token = response.access_token;
