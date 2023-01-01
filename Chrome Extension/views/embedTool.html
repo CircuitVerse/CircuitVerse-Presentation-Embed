@@ -1,0 +1,83 @@
+<div class="circuitverse__embed_tool">
+    <div id="circuitverse__embed_tool_window" class="hide">
+        <!-- Embed Tool Container for authorization -->
+        <div class="circuitverse__embed_tool_container authorize_screen hide">
+            <!-- header -->
+            <div class="circuitverse__embed_tool_container_header">
+                <img alt="" id="logo_white_1">
+                <div>
+                    <span class="title">CircuitVerse</span>
+                    <span class="subtitle">embed circuit in slides</span>
+                </div>
+            </div>
+            <!-- body -->
+            <div class="circuitverse__embed_tool_container_body" id="circuitverse__authorize_btn">
+                <p>Authorize Yourself <br>To Insert Circuit In Slide</p>
+                <button>
+                    <img  alt="" id="google_icon">
+                    <span>Sign in with Google</span>
+                </button>
+            </div>
+            <div class="circuitverse__embed_tool_container_footer">
+                * By authorizing, you are giving temporary access to your profile and edit access to google slides
+            </div>
+        </div>
+
+        <!-- Embed Tool Container for loading -->
+        <div class="circuitverse__embed_tool_container loading_container hide">
+            <!-- header -->
+            <div class="circuitverse__embed_tool_container_header">
+                <img alt=""  id="logo_white_2">
+                <div>
+                    <span class="title">CircuitVerse</span>
+                    <span class="subtitle">embed circuit in slides</span>
+                </div>
+            </div>
+            <!-- body -->
+            <div class="circuitverse__embed_tool_container_body">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>
+
+        <!-- Embed Tool Container for form page -->
+        <div class="circuitverse__embed_tool_container form_screen hide">
+            <!-- header -->
+            <div class="circuitverse__embed_tool_container_header">
+                <img alt=""  id="logo_white_3">
+                <div>
+                    <span class="title">CircuitVerse</span>
+                    <span class="subtitle">embed circuit in slides</span>
+                </div>
+            </div>
+            <!-- body -->
+            <div class="circuitverse__embed_tool_container_body">
+                <!-- input -->
+                <label>Enter link of circuit</label>
+                <input type="text" id="circuitverse__link_input">
+                <button id="circuitverse__embed_btn">Embed in Current Page</button>
+            </div>
+            <div class="msg_box invisible"></div>
+            <!-- footer -->
+            <div class="circuitverse__embed_tool_container_footer">
+                Logged in (<span id="circuitverse__logged_in_email"></span>)
+            </div>
+        </div>
+    </div>
+
+    <!-- Embed tool open button -->
+    <div class="circuitverse__embed_open_btn">
+        <img  id="logo_white_4">
+        &nbsp;
+        <div>
+            <span class="title">CircuitVerse</span>
+            <span class="subtitle">embed circuit</span>
+        </div>
+    </div>
+
+    <!-- Embed tool close button -->
+    <div class="circuitverse__embed_close_btn hide">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>              
+    </div>
+</div>
