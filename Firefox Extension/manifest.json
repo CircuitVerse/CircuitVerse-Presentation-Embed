@@ -1,39 +1,53 @@
 {
-  "name": "CircuitVerse",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "CircuitVerse Firefox Extension",
-  "homepage_url": "https://circuitverse.org",
-  "icons": {
-    "16": "icons/icon16.png",
-    "19": "icons/icon19.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "browser_action": {
-    "default_icon": "icons/icon32.png",
-    "default_popup": "views/browser_action.html",
-    "default_title": "Embed CircuitVerse Live Circuit"
-  },
-  "default_locale": "en",
-  "background": {
-    "scripts": [
-      "src/bg/background.js"
-    ],
-    "persistent": true
-  },
-  "permissions": [
-    "https://docs.google.com/*"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://docs.google.com/*"
+    "name": "CircuitVerse",
+    "version": "0.0.2",
+    "manifest_version": 2,
+    "description": "CircuitVerse Firefox Extension",
+    "homepage_url": "https://circuitverse.org",
+    "icons": {
+      "16": "icons/icon16.png",
+      "19": "icons/icon19.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "browser_action": {
+      "default_icon": "icons/icon32.png",
+      "default_popup": "views/popup.html",
+      "default_title": "Embed CircuitVerse Live Circuit"
+    },
+    "default_locale": "en",
+    "background": {
+      "scripts": [
+        "src/bg/background.js"
       ],
-      "js": [
-        "src/inject/inject.js"
+      "persistent": true
+    },
+    "permissions": [
+      "https://docs.google.com/*",
+      "https://circuitverse.org/*",
+      "https://www.googleapis.com/*",
+      "https://googleapis.com/*",
+      "https://slides.googleapis.com/*",
+      "storage",
+      "tabs"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "https://docs.google.com/*"
+        ],
+        "js": [
+          "src/inject/inject.js"
+        ]
+      }
+    ],
+    "web_accessible_resources": [
+        "views/embedTool.html",
+        "styles/embedTool.css",
+        "src/inject/embedTool.js",
+        "src/inject/gsi.client.js",
+        "img/google-icon.png",
+        "img/logo_white.png"
       ]
-    }
-  ]
-}
+  }
